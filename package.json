@@ -1,0 +1,52 @@
+{
+  "name": "chrome-extension",
+  "version": "1.0.0",
+  "description": "谷歌书签扩展",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sunxhh/chrome-extension.git"
+  },
+  "keywords": [
+    "chrome",
+    "extension",
+    "vue"
+  ],
+  "author": "sunxh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sunxhh/chrome-extension/issues"
+  },
+  "homepage": "https://github.com/sunxhh/chrome-extension#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "clean-webpack-plugin": "^0.1.17",
+    "css-loader": "^0.28.7",
+    "fastclick": "^1.0.6",
+    "file-loader": "^1.1.9",
+    "html-webpack-plugin": "^2.30.1",
+    "style-loader": "^0.19.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
+    "uglifyjs-webpack-plugin": "^1.1.4",
+    "url-loader": "^0.6.2",
+    "vue": "^2.5.13",
+    "vue-lazyload": "^1.2.2",
+    "vue-loader": "^14.1.1",
+    "vue-router": "^3.0.1",
+    "vue-template-compiler": "^2.5.13",
+    "webpack": "^3.10.0",
+    "webpack-dev-middleware": "^3.0.1",
+    "webpack-hot-middleware": "^2.21.2",
+    "webpack-merge": "^4.1.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.5",
+    "eslint": "^4.18.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "webpack-dev-server": "^2.11.1"
+  }
+}

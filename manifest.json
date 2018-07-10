@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "书签管理器",
+  "description": "这是一个书签管理器",
+  "version": "1.0",
+  "background": {
+    "page": "dist/bookmarks.html"
+  },
+  "permissions": [
+    "bookmarks"
+  ],
+  "browser_action": {
+    "default_icon": "src/assets/img/icon.png",
+    "default_popup": "popup.html"
+  }
+}

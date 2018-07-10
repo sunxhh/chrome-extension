@@ -1,0 +1,31 @@
+@import '../../../../common/stylus/variable.styl';
+
+.bookmarks-header {
+  height: 60px;
+  line-height: 60px;
+  display: flex;
+  background: $color-background;
+  color: $color-text;
+  font-size: $font-size-medium-x;
+  align-items: center;
+  display: none;
+
+  .bookmarks-header-name {
+    flex-grow: 1;
+    width: 100px;
+    margin-left: 30px;
+  }
+
+  .bookmarks-search-wrapper {
+    display: flex;
+    flex-grow: 1.5;
+    width: 100px;
+
+    input {
+      height: 40px;
+      line-height: 40px;
+      padding: 0px 30px;
+      width: 80%;
+    }
+  }
+}

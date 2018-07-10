@@ -1,6 +1,5 @@
 <template>
   <div>
-    <span>asdasdasd</span>
     <header-search></header-search>
     <router-view></router-view>
   </div>

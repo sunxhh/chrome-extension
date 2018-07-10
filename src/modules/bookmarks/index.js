@@ -1,7 +1,7 @@
 import Vue from "vue";
 import App from "./app";
 
-import 'src/common/stylus/index.styl';
+import 'common/stylus/index.styl';
 
 import router from "./router";
 

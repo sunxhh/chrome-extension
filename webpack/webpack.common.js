@@ -3,7 +3,7 @@ const glob = require('glob');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 // 获得路径
 const resolve = function(src) {
   return path.join(__dirname, "..", src);
@@ -42,6 +42,7 @@ module.exports = {
     path: resolve('dist')
   },
   plugins: [
+    new VueLoaderPlugin(),
     new CleanWebpackPlugin('dist', {
       root: resolve(''),
     }),
@@ -50,17 +51,22 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /.vue$/,
+        test: /\.vue$/,
         loader: 'vue-loader'
+      }, {
+        test: /\.js$/,
+        loader: 'babel-loader'
       }, {
         test: /\.css$/,
         use: [
+          'vue-style-loader',
           'style-loader',
           'css-loader'
         ]
       }, {
         test: /\.styl$/,
         use: [
+          'vue-style-loader',
           'style-loader',
           'css-loader',
           'stylus-loader'
@@ -83,6 +89,7 @@ module.exports = {
     extensions: ['.js', '.vue'],
     // 别名
     alias: {
+      'vue$': 'vue/dist/vue.esm.js',
       src: resolve('src'),
       common: resolve('src/common'),
       modules: resolve('src/modules'),

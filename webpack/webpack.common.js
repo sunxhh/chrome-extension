@@ -70,10 +70,10 @@ module.exports = {
       }, {
         test: /\.styl$/,
         use: [
-          'vue-style-loader',
           'style-loader',
           'css-loader',
-          'stylus-loader'
+          'stylus-loader',
+          'vue-style-loader',
         ],
       }, {
         test: /\.(ttf|woff|svg|eot)$/,

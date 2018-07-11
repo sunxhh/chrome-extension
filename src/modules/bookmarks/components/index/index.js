@@ -1,5 +1,5 @@
-import OneBookmark from '../one-bookmark/index';
-import BookmarkFolder from '../bookmark-folder/index';
+import OneBookmark from '../one-bookmark/index.vue';
+import BookmarkFolder from '../bookmark-folder/index.vue';
 export default {
   data() {
     return {

@@ -42,6 +42,10 @@ module.exports = {
     path: resolve('dist')
   },
   plugins: [
+    //引入外部类库
+    // new webpack.ProvidePlugin({
+    //   chrome: 'chrome'
+    // }),
     new VueLoaderPlugin(),
     new CleanWebpackPlugin('dist', {
       root: resolve(''),
@@ -86,14 +90,15 @@ module.exports = {
   },
   resolve: {
     // 可以忽略的文件类型
-    extensions: ['.js', '.vue'],
+    extensions: ['.vue'],
     // 别名
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       src: resolve('src'),
       common: resolve('src/common'),
       modules: resolve('src/modules'),
-      base: resolve('src/base')
+      base: resolve('src/base'),
+      assets: resolve('src/assets'),
     }
   }
 };

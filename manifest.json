@@ -4,7 +4,7 @@
   "description": "这是一个书签管理器",
   "version": "1.0",
   "background": {
-    "page": "dist/bookmarks.html"
+
   },
   "permissions": [
     "bookmarks"

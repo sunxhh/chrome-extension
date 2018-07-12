@@ -14,7 +14,9 @@ export default {
     this.getAllBookmarksTree().then((list) => {
       let folderList = [];
       this.getFolderList(list, folderList);
+      this.deleteSubFolder(folderList);
       this.folderList = folderList;
+      console.log(folderList);
     })
   },
   methods: {
@@ -40,6 +42,17 @@ export default {
           return;
         }
       });
+    },
+    // 去除文件夹下面的子文件夹
+    deleteSubFolder: function(list) {
+      list.forEach(function(folder) {
+        folder.children = folder.children.filter((child) => {
+          if (child.url) {
+            return true;
+          }
+          return false;
+        })
+      })
     }
   }
 };

@@ -1,11 +1,11 @@
 <template>
-  <a class="bookmark-tile">
+  <a class="bookmark-tile" v-bind:href="bookmark.url">
     <div class="tile-title-wrapper">
       <div class="tile-favicon">
         <img v-bind:src="faviconUrl">
       </div>
       <div class="tile-title">
-        {{title}}
+        {{bookmark.title}}
       </div>
     </div>
     <div class="tile-content">
@@ -19,11 +19,10 @@ export default {
   data() {
     return {
       faviconUrl: "",
-      thumbUrl: "",
-      title: ""
+      thumbUrl: ""
     };
   },
-  props: ["faviconUrl", "thumbUrl", "title"],
+  props: ["bookmark"],
   created: function() {},
   methods: {}
 };

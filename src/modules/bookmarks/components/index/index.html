@@ -1,6 +1,10 @@
 <div class="bookmarks">
   <bookmark-folder v-bind:folderList="folderList"></bookmark-folder>
-  <div>
-    
+  <div class="bookmarks-content">
+    <div v-for="folder of folderList" :key="folder.id">
+      <div v-for="bookmark of folder.children" :key="bookmark.id">
+        <one-bookmark v-bind:bookmark="bookmark"></one-bookmark>
+      </div>
+    </div>
   </div>
 </div>

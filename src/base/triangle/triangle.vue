@@ -1,5 +1,5 @@
 <template>
-  <div class="triangle"></div>
+  <div v-bind:class="['triangle', directionClass]"></div>
 </template>
 <script>
 const typeMap = {
@@ -16,17 +16,34 @@ export default {
   created: function() {},
   computed: {
     directionClass: function() {
-      let type = this.type || 1;
+      let type = this.type || 2;
       return typeMap[type];
     }
   }
 };
 </script>
-<style scoped>
+<style lang="stylus" scoped>
 .triangle {
-  background-image: url("../../assets/img/sketched.png");
+  background-image: url('../../assets/img/sketched.png');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 90%;
+  height: 100%;
+
+  &.direction-left {
+    transform: rotate(270deg);
+  }
+
+  &.direction-right {
+    transform: rotate(90deg);
+  }
+
+  &.direction-top {
+    transform: rotate(0deg);
+  }
+
+  &.direction-bottom {
+    transform: rotate(180deg);
+  }
 }
 </style>

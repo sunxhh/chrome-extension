@@ -1,9 +1,9 @@
 import Vue from "vue";
-import App from "./app";
+import App from "./app.vue";
 
 import 'common/stylus/index.styl';
 
-import router from "./router";
+import router from "./router/index.js";
 import installComponents from '../../base/index.js'
 
 Vue.use(installComponents);

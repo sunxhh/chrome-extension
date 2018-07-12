@@ -1,5 +1,5 @@
 <template>
-  <div class="triangle {{directionClass}}"></div>
+  <div class="triangle"></div>
 </template>
 <script>
 const typeMap = {

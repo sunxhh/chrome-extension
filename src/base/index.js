@@ -1,4 +1,4 @@
-import Triangle from './triangle/triangle'
+import Triangle from './triangle/triangle.vue'
 
 export default {
   install: function(Vue) {

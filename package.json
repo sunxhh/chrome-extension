@@ -33,7 +33,7 @@
     "glob": "latest",
     "html-webpack-plugin": "latest",
     "style-loader": "latest",
-    "stylus": "latest",
+    "stylus": "^0.54.5",
     "stylus-loader": "latest",
     "uglifyjs-webpack-plugin": "latest",
     "url-loader": "latest",

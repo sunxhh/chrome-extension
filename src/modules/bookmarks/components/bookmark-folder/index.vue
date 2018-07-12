@@ -19,7 +19,7 @@ export default {
 };
 </script>
 <style lang="stylus" scoped>
-@import 'common/stylus/variable.styl';
+@import '../../../../common/stylus/variable.styl';
 
 .folder-wrapper {
   width: 100%;

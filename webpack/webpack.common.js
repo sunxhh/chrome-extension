@@ -65,15 +65,16 @@ module.exports = {
         use: [
           'vue-style-loader',
           'style-loader',
-          'css-loader'
+          'css-loader',
+          'stylus-loader'
         ]
       }, {
-        test: /\.styl$/,
+        test: /\.styl(us)?$/,
         use: [
-          'style-loader',
-          'css-loader',
-          'stylus-loader',
           'vue-style-loader',
+          // 'style-loader',
+          'css-loader',
+          'stylus-loader'
         ],
       }, {
         test: /\.(ttf|woff|svg|eot)$/,
@@ -90,7 +91,7 @@ module.exports = {
   },
   resolve: {
     // 可以忽略的文件类型
-    extensions: ['.vue'],
+    extensions: ['js', 'vue'],
     // 别名
     alias: {
       'vue$': 'vue/dist/vue.esm.js',

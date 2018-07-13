@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-import HeaderSearch from "./components/header-search/index.vue";
+import HeaderSearch from "./components/header-search/header-search.vue";
 export default {
   components: {
     HeaderSearch

@@ -1,3 +1,24 @@
+<template>
+<div class="bookmarks-header">
+  <div class="bookmarks-header-name">书签</div>
+  <div class="bookmarks-search-wrapper">
+    <input type="text" placeholder="搜索书签">
+  </div>
+  <div v-on:click="open">点击我啊</div>
+</div>
+
+</template>
+<script>
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    open: function() {}
+  },
+};
+</script>
+<style lang="stylus" scoped>
 @import '../../../../common/stylus/variable.styl';
 
 .bookmarks-header {
@@ -28,3 +49,4 @@
     }
   }
 }
+</style>

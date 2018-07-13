@@ -56,18 +56,15 @@ module.exports = {
     rules: [
       {
         test: /\.vue$/,
+        exclude: /node_modules/,
         loader: 'vue-loader'
       }, {
         test: /\.js$/,
+        exclude: /node_modules/,
         loader: 'babel-loader'
       }, {
         test: /\.css$/,
-        use: [
-          'vue-style-loader',
-          'style-loader',
-          'css-loader',
-          'stylus-loader'
-        ]
+        loader: 'style-loader!css-loader'
       }, {
         test: /\.styl(us)?$/,
         use: [
@@ -79,19 +76,19 @@ module.exports = {
       }, {
         test: /\.(ttf|woff|svg|eot)$/,
         use: [
-          'url-loader?name=../fonts/[name].[ext]?[hash]'
+          'file-loader'
         ],
       }, {
         // 图片加载器，file-loader，更适合图片，可以将较小的图片转成base64，减少http请求
         // 如下配置，将小于8192byte的图片转成base64码
         test: /\.(png|jpg|gif)$/,
-        loader: 'url-loader?limit=8192&name=../images/[name].[ext]?[hash]',
+        loader: 'file-loader',
       }
     ]
   },
   resolve: {
     // 可以忽略的文件类型
-    extensions: ['js', 'vue'],
+    extensions: ['.js', '.vue'],
     // 别名
     alias: {
       'vue$': 'vue/dist/vue.esm.js',

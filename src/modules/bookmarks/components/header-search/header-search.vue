@@ -1,10 +1,10 @@
 <template>
 <div class="bookmarks-header">
+  <div v-on:click="open">点击我啊</div>
   <div class="bookmarks-header-name">书签</div>
   <div class="bookmarks-search-wrapper">
     <input type="text" placeholder="搜索书签">
   </div>
-  <div v-on:click="open">点击我啊</div>
 </div>
 
 </template>
@@ -14,8 +14,12 @@ export default {
     return {};
   },
   methods: {
-    open: function() {}
-  },
+    open: function() {
+      chrome.tabs.captureVisibleTab({ format: "png" }, function(screenshotUrl) {
+        // 保存screenshotUrl， image信息，默认使用png格式
+      });
+    }
+  }
 };
 </script>
 <style lang="stylus" scoped>

@@ -1,12 +1,15 @@
 <template>
   <a class="bookmark-tile" v-bind:href="bookmark.url">
-    <div class="tile-title-wrapper" v-bind:title="bookmark.title">
+    <div class="tile-title-wrapper">
       <div class="tile-favicon">
         <img v-bind:src="faviconUrl">
       </div>
-      <div class="tile-title">
-        {{bookmark.title}}
-      </div>
+      <el-tooltip class="item" effect="light" v-bind:content="bookmark.title" placement="top-start">
+        <div class="tile-title">
+          {{bookmark.title}}
+        </div>
+      </el-tooltip>
+      
     </div>
     <div class="tile-content">
       <img v-bind:src="thumbUrl" />

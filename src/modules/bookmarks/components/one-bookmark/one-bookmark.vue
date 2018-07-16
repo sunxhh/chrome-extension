@@ -9,7 +9,6 @@
           {{bookmark.title}}
         </div>
       </el-tooltip>
-      
     </div>
     <div class="tile-content">
       <img v-bind:src="thumbUrl" />
@@ -18,6 +17,7 @@
 
 </template>
 <script>
+import { capture } from "common/js/capture.js";
 export default {
   data() {
     return {
@@ -26,7 +26,13 @@ export default {
     };
   },
   props: ["bookmark"],
-  created: function() {},
+  created: function() {
+    setTimeout(function() {
+      capture().then(data => {
+        document.body.appendChild(data);
+      });
+    }, 3000);
+  },
   methods: {}
 };
 </script>
@@ -37,6 +43,10 @@ export default {
   display: inline-block;
   width: 150px;
   position: relative;
+
+  &>>>.item {
+    font-size: $font-size-medium;
+  }
 
   .tile-title-wrapper {
     .tile-title {

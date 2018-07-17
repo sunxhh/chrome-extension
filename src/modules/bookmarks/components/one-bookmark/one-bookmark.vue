@@ -1,23 +1,26 @@
 <template>
-  <a class="bookmark-tile" v-bind:href="bookmark.url">
+  <!-- <a class="bookmark-tile" v-bind:href="bookmark.url"> -->
+  <a class="bookmark-tile">
     <div class="tile-title-wrapper">
       <div class="tile-favicon">
-        <img v-bind:src="faviconUrl">
+        <img v-bind:src="get_icon(bookmark.url)">
       </div>
-      <el-tooltip class="item" effect="light" v-bind:content="bookmark.title" placement="top-start">
-        <div class="tile-title">
-          {{bookmark.title}}
-        </div>
-      </el-tooltip>
+      <div class="tile-title-outter">
+        <el-tooltip popper-class="tooltip-title" effect="light" v-bind:content="bookmark.title" placement="top-start">
+          <div class="tile-title">
+            {{bookmark.title}}
+          </div>
+        </el-tooltip>
+      </div>
     </div>
     <div class="tile-content">
-      <img v-bind:src="thumbUrl" />
+      <!-- <iframe v-bind:src="bookmark.url"></iframe> -->
     </div>
   </a>
 
 </template>
 <script>
-import { capture } from "common/js/capture.js";
+import axios from "axios";
 export default {
   data() {
     return {
@@ -27,13 +30,16 @@ export default {
   },
   props: ["bookmark"],
   created: function() {
-    setTimeout(function() {
-      capture().then(data => {
-        document.body.appendChild(data);
-      });
-    }, 3000);
+    this.getHtml();
   },
-  methods: {}
+
+  methods: {
+    getFavicon: function() {},
+    getHtml: function() {},
+    get_icon: function(url) {
+      return "chrome://favicon/" + url;
+    }
+  }
 };
 </script>
 <style lang="stylus" scoped>
@@ -41,19 +47,37 @@ export default {
 
 .bookmark-tile {
   display: inline-block;
-  width: 150px;
+  width: 250px;
   position: relative;
 
-  &>>>.item {
-    font-size: $font-size-medium;
+  .tile-title-wrapper {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    .tile-favicon {
+      display: inline-block;
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+
+    .tile-title-outter {
+      margin-left: 5px;
+      max-width: 230px;
+
+      .tile-title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: $font-size-medium;
+        
+      }
+    }
   }
 
-  .tile-title-wrapper {
-    .tile-title {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+  .tile-content {
+    width: 100%;
+    height: 96px;
   }
 }
 </style>

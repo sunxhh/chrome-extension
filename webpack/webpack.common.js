@@ -35,10 +35,11 @@ function getEntry(globPath) {
 module.exports = {
   entry: {
     vendor: ['vue', 'vue-router'],
+    background: resolve('src/modules/background.js'),
     ...getEntry(resolve('src/modules/*/index.js'))
   },
   output: {
-    filename: '[name].[hash].js',
+    filename: '[name].js',
     path: resolve('dist')
   },
   plugins: [

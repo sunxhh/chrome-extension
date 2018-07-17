@@ -10,5 +10,7 @@ iframe中加载url，加载完成以后调用chrome api chrome.tabs.captureVisib
 方案 2
 打开新窗口打开url，插入js 
 检测是否在书签中，检测是否已经保存有截图
-待页面加在完成之后使用html2canvas 将网页画好返回到background.js 进行处理并存储
+待页面加在完成之后使用
+html2canvas 或者 chrome api chrome.tabs.captureVisibleTab（优先考虑）
+将网页画好返回到background.js 进行处理并存储
 ////=========尝试中。。。

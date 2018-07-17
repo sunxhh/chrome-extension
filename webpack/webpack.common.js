@@ -35,7 +35,6 @@ function getEntry(globPath) {
 module.exports = {
   entry: {
     vendor: ['vue', 'vue-router'],
-    background: resolve('src/modules/background.js'),
     ...getEntry(resolve('src/modules/*/index.js'))
   },
   output: {

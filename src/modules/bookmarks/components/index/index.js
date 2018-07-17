@@ -18,16 +18,6 @@ export default {
       this.folderList = folderList;
       console.log(folderList);
     })
-    chrome.runtime.sendMessage(
-      null,
-      {
-        url: '111'
-      }, {},
-      function(response) {
-        // console.log(111);
-        // console.log(response);
-      }
-    );
   },
   methods: {
     // 获取所有的书签树

@@ -38,6 +38,9 @@ export default {
     getHtml: function() {},
     get_icon: function(url) {
       return "chrome://favicon/" + url;
+    },
+    getThumbUrl: function(url) {
+      return "chrome-search://thumb/" + url;
     }
   }
 };
@@ -70,7 +73,6 @@ export default {
         overflow: hidden;
         text-overflow: ellipsis;
         font-size: $font-size-medium;
-        
       }
     }
   }

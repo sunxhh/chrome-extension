@@ -1,3 +1,5 @@
+import { capture } from 'common/js/capture';
+
 function isBookmark(url) {
   let istrue = false;
   return new Promise((resolve, reject) => {
@@ -27,7 +29,9 @@ function isBookmark(url) {
 function getBookmarksScreenshot(request, sender, sendResponse) {
   isBookmark(request.url).then((istrue) => {
     if (istrue) {
-      bindOnload();
+      capture().then((img) => {
+        sendResponse(img);
+      })
     }
   })
 }

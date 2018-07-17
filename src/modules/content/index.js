@@ -1,8 +1,6 @@
-// console.log(chrome.runtime.getURL('dist/background.js'))
-
-
 chrome.runtime.sendMessage(null, {
-  key: "bookmarks.getBookmarksScreenshot"
+  key: "bookmarks.getBookmarksScreenshot",
+  url: location.host
 }, {}, function(a) {
   console.log(a)
 })

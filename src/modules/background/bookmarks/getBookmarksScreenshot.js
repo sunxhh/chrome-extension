@@ -61,13 +61,4 @@ function getBookmarksScreenshot(request, sender, sendResponse) {
   })
 }
 
-function getUrlImgData() {
-  return db.getDataByKey('bookmark', request.url).then((data) => {
-    let { result, store } = data;
-
-  })
-}
-export {
-  getUrlImgData
-};
 export default getBookmarksScreenshot;

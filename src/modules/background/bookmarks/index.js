@@ -1,5 +1,4 @@
-import getBookmarksScreenshot, { getUrlImgData } from './getBookmarksScreenshot.js';
+import getBookmarksScreenshot from './getBookmarksScreenshot.js';
 export default {
-  getBookmarksScreenshot,
-  getUrlImgData
+  getBookmarksScreenshot
 }

@@ -14,13 +14,24 @@
       </div>
     </div>
     <div class="tile-content">
-      <!-- <iframe v-bind:src="bookmark.url"></iframe> -->
+      <img v-bind:src="thumbUrl">
     </div>
   </a>
 
 </template>
 <script>
 import axios from "axios";
+import DB from "common/js/indexDB";
+
+let dataBaseOpen = new DB({
+  name: "bookmark",
+  keyPath: "url",
+  upgradeneeded: function(db, name, keyPath) {
+    if (!db.objectStoreNames.contains(name)) {
+      db.createObjectStore(name, { keyPath: keyPath });
+    }
+  }
+}).init();
 export default {
   data() {
     return {
@@ -31,6 +42,7 @@ export default {
   props: ["bookmark"],
   created: function() {
     this.getHtml();
+    this.getUrlImgData(this.bookmark.url);
   },
 
   methods: {
@@ -39,8 +51,15 @@ export default {
     get_icon: function(url) {
       return "chrome://favicon/" + url;
     },
-    getThumbUrl: function(url) {
-      return "chrome-search://thumb/" + url;
+    // 获取到img
+    getUrlImgData(url) {
+      return dataBaseOpen.then(db => {
+        console.log(url);
+        return db.getDataByKey("bookmark", "cn.bing.com").then(data => {
+          let { result, store } = data;
+          this.thumbUrl = result.data;
+        });
+      });
     }
   }
 };
@@ -80,6 +99,11 @@ export default {
   .tile-content {
     width: 100%;
     height: 96px;
+
+    img {
+      width: 100%;
+      height: 140px;
+    }
   }
 }
 </style>

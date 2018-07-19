@@ -1,4 +1,15 @@
 import { capture } from 'common/js/capture';
+import DB from 'common/js/indexDB';
+
+let dataBaseOpen = new DB({
+  name: 'bookmark',
+  keyPath: 'url',
+  upgradeneeded: function(db, name, keyPath) {
+    if (!db.objectStoreNames.contains(name)) {
+      db.createObjectStore(name, { keyPath: keyPath });
+    }
+  },
+}).init();
 
 function isBookmark(url) {
   let istrue = false;
@@ -25,14 +36,38 @@ function isBookmark(url) {
   })
 }
 
-
 function getBookmarksScreenshot(request, sender, sendResponse) {
   isBookmark(request.url).then((istrue) => {
     if (istrue) {
-      capture().then((img) => {
-        sendResponse(img);
+      capture().then((screenshotData) => {
+        dataBaseOpen.then((db) => {
+          db.getDataByKey('bookmark', request.url).then((data) => {
+            let { result, store } = data;
+            if (result) {
+              store.put({
+                url: request.url,
+                data: screenshotData
+              });
+            } else {
+              store.add({
+                url: request.url,
+                data: screenshotData
+              });
+            }
+          })
+        });
       })
     }
   })
 }
+
+function getUrlImgData() {
+  return db.getDataByKey('bookmark', request.url).then((data) => {
+    let { result, store } = data;
+
+  })
+}
+export {
+  getUrlImgData
+};
 export default getBookmarksScreenshot;

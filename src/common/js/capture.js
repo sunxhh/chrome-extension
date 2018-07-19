@@ -5,11 +5,7 @@ function capture() {
       quality: 100
     }, function(imgData) {
       if (imgData) {
-        var img = new Image;
-        img.onload = function() {
-          resolve(img)
-        };
-        img.src = imgData
+        resolve(imgData);
       }
     })
   })

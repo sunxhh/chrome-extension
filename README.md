@@ -2,7 +2,7 @@
 chrome-extension
 
 ### 问题
-1. 目前卡在截取网页快照上面了，没有找到好的解决方案暂且用替代方案
+1. 目前卡在截取网页快照上面了，没有找到好的解决方案暂且用替代方案（已完成替代解决方案）
 方案 1
 iframe中加载url，加载完成以后调用chrome api chrome.tabs.captureVisibleTab 截取url显示区的图片然后保存
 /////========结论==不行 
@@ -14,3 +14,5 @@ iframe中加载url，加载完成以后调用chrome api chrome.tabs.captureVisib
 html2canvas 或者 chrome api chrome.tabs.captureVisibleTab（优先考虑）
 将网页画好返回到background.js 进行处理并存储
 ////=========尝试中。。。
+（使用captureVisibleTab 进行截图，存储于indexDB中，下次进页面的时候进行获取）
+////=========可行的！！！

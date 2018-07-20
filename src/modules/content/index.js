@@ -1,6 +1,7 @@
 chrome.runtime.sendMessage(null, {
   key: "bookmarks.getBookmarksScreenshot",
-  url: location.host
+  origin: location.origin,
+  url: location.href
 }, {}, function(a) {
-  document.body.appendChild(a)
+  console.log('content------in');
 })

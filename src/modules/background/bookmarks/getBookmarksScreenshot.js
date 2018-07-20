@@ -11,8 +11,9 @@ let dataBaseOpen = new DB({
   },
 }).init();
 
+// 返回0 不存在，返回1 完全匹配，
 function isBookmark(url) {
-  let istrue = false;
+  let istrue = 0;
   return new Promise((resolve, reject) => {
     chrome.bookmarks.getTree(function(list) {
       function equalUrl(list) {
@@ -21,8 +22,8 @@ function isBookmark(url) {
         }
         for (let i = 0; i < list.length; i++) {
           let cur = list[i];
-          if (cur.url && cur.url.indexOf(url) !== -1) {
-            istrue = true;
+          if (cur.url && cur.url === url) {
+            istrue = 1;
             return true;
           }
           if (cur.children) {
@@ -31,6 +32,7 @@ function isBookmark(url) {
         }
       }
       equalUrl(list);
+
       resolve(istrue);
     });
   })
@@ -39,24 +41,27 @@ function isBookmark(url) {
 function getBookmarksScreenshot(request, sender, sendResponse) {
   isBookmark(request.url).then((istrue) => {
     if (istrue) {
-      capture().then((screenshotData) => {
-        dataBaseOpen.then((db) => {
-          db.getDataByKey('bookmark', request.url).then((data) => {
-            let { result, store } = data;
-            if (result) {
-              store.put({
+      // 短暂延迟再截图
+      setTimeout(() => {
+        capture().then((screenshotData) => {
+          dataBaseOpen.then((db) => {
+            db.getDataByKey('bookmark', request.url).then((data) => {
+              let { result, store } = data;
+              let dbData = {
                 url: request.url,
+                origin: request.origin,
                 data: screenshotData
-              });
-            } else {
-              store.add({
-                url: request.url,
-                data: screenshotData
-              });
-            }
-          })
-        });
+              };
+              if (result) {
+                store.put(dbData);
+              } else {
+                store.add(dbData);
+              }
+            })
+          });
+        }, 1000);
       })
+
     }
   })
 }

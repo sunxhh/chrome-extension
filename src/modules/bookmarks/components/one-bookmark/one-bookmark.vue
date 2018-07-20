@@ -1,6 +1,6 @@
 <template>
-  <!-- <a class="bookmark-tile" v-bind:href="bookmark.url"> -->
-  <a class="bookmark-tile">
+  <a class="bookmark-tile" target="_blank" v-bind:href="bookmark.url">
+  <!-- <a class="bookmark-tile"> -->
     <div class="tile-title-wrapper">
       <div class="tile-favicon">
         <img v-bind:src="get_icon(bookmark.url)">
@@ -54,10 +54,11 @@ export default {
     // 获取到img
     getUrlImgData(url) {
       return dataBaseOpen.then(db => {
-        console.log(url);
-        return db.getDataByKey("bookmark", "cn.bing.com").then(data => {
+        return db.getDataByKey("bookmark", url).then(data => {
           let { result, store } = data;
-          this.thumbUrl = result.data;
+          if (result) {
+            this.thumbUrl = result.data;
+          }
         });
       });
     }
@@ -71,11 +72,23 @@ export default {
   display: inline-block;
   width: 250px;
   position: relative;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  background: rgb(250, 250, 250);
+  border-radius: 2px;
+  box-sizing: border-box;
+
+  &:hover {
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  }
 
   .tile-title-wrapper {
     display: flex;
     align-items: center;
     overflow: hidden;
+    height: 34px;
+    position: relative;
+    padding: 0 8px;
+    border-bottom: 1px solid #dbdbdb;
 
     .tile-favicon {
       display: inline-block;
@@ -85,7 +98,7 @@ export default {
 
     .tile-title-outter {
       margin-left: 5px;
-      max-width: 230px;
+      max-width: 205px;
 
       .tile-title {
         white-space: nowrap;
@@ -98,7 +111,7 @@ export default {
 
   .tile-content {
     width: 100%;
-    height: 96px;
+    font-size: 0px;
 
     img {
       width: 100%;

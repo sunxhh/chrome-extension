@@ -1,7 +1,7 @@
 <div class="bookmarks">
-  <bookmark-folder v-bind:folderList="folderList"></bookmark-folder>
+  <bookmark-folder v-bind:folderList="folderList" v-on:selectFolder="selectFolder" v-bind:selectedId="selectedFolderId"></bookmark-folder>
   <div class="bookmarks-content">
-    <div v-for="folder of folderList" :key="folder.id">
+    <div v-for="folder of folderList" v-bind:class="['parent_folder_'+folder.id]" :key="folder.id">
       <div class="bookmark" v-for="bookmark of folder.children" :key="bookmark.id">
         <one-bookmark v-bind:bookmark="bookmark"></one-bookmark>
       </div>

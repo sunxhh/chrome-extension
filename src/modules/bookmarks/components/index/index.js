@@ -4,7 +4,8 @@ import BookmarkFolder from '../bookmark-folder/bookmark-folder.vue';
 export default {
   data() {
     return {
-      folderList: []
+      folderList: [],
+      selectedFolderId: undefined
     };
   },
   components: {
@@ -54,6 +55,9 @@ export default {
           return false;
         })
       })
+    },
+    selectFolder: function(folder) {
+      this.selectedFolderId = folder.id;
     }
   }
 };

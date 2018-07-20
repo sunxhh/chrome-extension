@@ -1,6 +1,6 @@
 <template>
 <div class="folder-wrapper">
-  <div v-for="item in folderList" class="folder-content" :key="item.id">
+  <div v-for="item in folderList" v-on:click="selected($event,item)" v-bind:class="['folder-content',item.id===cSelectedId?'selected-folder':'']" :id="'folder_'+item.id" :key="item.id">
     <div class="folder-title">{{item.title}}</div>
     <div class="triangle-icon">
       <triangle></triangle>
@@ -13,9 +13,18 @@ export default {
   data() {
     return {};
   },
-  props: ["folderList"],
+  props: ["folderList", "selectedId"],
   created: function() {},
-  methods: {}
+  computed: {
+    cSelectedId: function() {
+      return this.selectedId || this.folderList[0].id;
+    }
+  },
+  methods: {
+    selected: function(e, item) {
+      this.$emit("selectFolder", item);
+    }
+  }
 };
 </script>
 <style lang="stylus" scoped>
@@ -38,9 +47,15 @@ export default {
     background: #eaeaea;
     cursor: pointer;
     position: relative;
+    border: 1px solid rgba(0, 0, 0, 0);
 
     &:hover {
       background: #dbdbdb;
+    }
+
+    &.selected-folder {
+      background: #fff;
+      border: 1px solid #333;
     }
 
     .triangle-icon {

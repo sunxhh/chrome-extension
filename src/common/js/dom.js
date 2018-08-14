@@ -1,3 +1,4 @@
+// 获取目标距离文档顶部的距离
 export function toTop(target, parent) {
   let top = 0;
 

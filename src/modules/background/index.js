@@ -14,6 +14,7 @@ function getDictFn(key) {
   }
   return fn;
 }
+// 绑定事件
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   let key = request.key || 　"";
   getDictFn(key)(request, sender, sendResponse);

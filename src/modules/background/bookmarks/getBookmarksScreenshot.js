@@ -38,6 +38,7 @@ function isBookmark(url) {
   })
 }
 
+// 获取屏幕的截图并存储在indexdb中
 function getBookmarksScreenshot(request, sender, sendResponse) {
   isBookmark(request.url).then((istrue) => {
     if (istrue) {

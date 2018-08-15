@@ -6,7 +6,7 @@ chrome-extension
 
 
 
-目前进度计划
+### 目前进度计划
 使用vuex 实现两侧滚动条同步
 
 

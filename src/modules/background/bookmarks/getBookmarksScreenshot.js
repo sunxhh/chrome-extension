@@ -16,12 +16,12 @@ function isBookmark(url) {
   let istrue = 0;
   return new Promise((resolve, reject) => {
     chrome.bookmarks.getTree(function(list) {
-      function equalUrl(list) {
+      function equalUrl(clist) {
         if (istrue) {
           return true;
         }
-        for (let i = 0; i < list.length; i++) {
-          let cur = list[i];
+        for (let i = 0; i < clist.length; i++) {
+          let cur = clist[i];
           if (cur.url && cur.url === url) {
             istrue = 1;
             return true;

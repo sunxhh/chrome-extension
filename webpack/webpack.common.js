@@ -1,12 +1,11 @@
 const path = require('path');
 const glob = require('glob');
-const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 // 获得路径
 const resolve = function (src) {
-	return path.join(__dirname, "..", src);
+	return path.join(__dirname, '..', src);
 };
 
 let htmlWebpackPluginConfig = [];
@@ -55,6 +54,11 @@ module.exports = {
 	],
 	module: {
 		rules: [{
+			test: /\.js$/,
+			loader: 'eslint-loader',
+			enforce: 'pre',
+			exclude: /node_modules/
+		}, {
 			test: /\.vue$/,
 			exclude: /node_modules/,
 			loader: 'vue-loader'

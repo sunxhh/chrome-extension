@@ -7,11 +7,11 @@ Vue.use(VueRouter);
 export default new VueRouter({
   routes: [
     {
-      path: "/",
-      redirect: "/index"
+      path: '/',
+      redirect: '/index'
     },
     {
-      path: "/index",
+      path: '/index',
       component: Index
   },
   ]

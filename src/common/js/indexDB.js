@@ -22,13 +22,13 @@ class DB {
       };
 
       request.onsuccess = (e) => {
-        console.log("open success");
+        console.log('open success');
         this.db = e.target.result;
         resolve(this);
       };
 
       request.onupgradeneeded = (e) => {
-        console.error("db upgradeneeded");
+        console.error('db upgradeneeded');
         let db = e.target.result;
         this.config.upgradeneeded(db, this.config.name, this.config.keyPath);
       };

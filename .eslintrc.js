@@ -47,6 +47,7 @@ module.exports = {
 		'space-before-function-paren': OFF,
 		'no-useless-escape': OFF,
 		'no-console': OFF,
-		'dot-notation': OFF
+		'dot-notation': OFF,
+		'no-debugger': OFF
 	},
 };

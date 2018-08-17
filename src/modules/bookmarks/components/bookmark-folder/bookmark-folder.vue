@@ -1,6 +1,6 @@
 <template>
 <div class="folder-wrapper">
-  <div v-for="item in folderList" v-on:click="selected($event,item)" v-bind:class="['folder-content',item.id===cSelectedId?'selected-folder':'']" :id="'folder_'+item.id" :key="item.id">
+  <div v-for="item in folderList" v-drag:drop="drop" v-on:dragover="dragenter($event)" v-on:dragleave="dragleave($event)" v-on:click="selected($event,item)" v-bind:class="['folder-content',item.id===cSelectedId?'selected-folder':'']" :id="'folder_'+item.id" :key="item.id">
     <div class="folder-title">{{item.title}}</div>
     <div class="triangle-icon">
       <triangle></triangle>
@@ -11,7 +11,12 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      dragData: {
+        a: 1,
+        b: 2
+      }
+    };
   },
   props: ["folderList", "selectedId"],
   created: function() {},
@@ -23,6 +28,20 @@ export default {
   methods: {
     selected: function(e, item) {
       this.$emit("selectFolder", item);
+    },
+    drop(data, $event) {
+      console.log(data);
+      let target = $event.currentTarget;
+      target.style["border"] = "";
+    },
+    dragenter($event) {
+      let target = $event.currentTarget;
+      target.style["border"] = "3px solid #333";
+      event.preventDefault();
+    },
+    dragleave($event) {
+      let target = $event.currentTarget;
+      target.style["border"] = "";
     }
   }
 };

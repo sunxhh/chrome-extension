@@ -1,5 +1,5 @@
 <template>
-  <a class="bookmark-tile" target="_blank" v-bind:href="bookmark.url">
+  <a v-drag:drag="bookmark" class="bookmark-tile" target="_blank" v-bind:href="bookmark.url">
   <!-- <a class="bookmark-tile"> -->
     <div class="tile-title-wrapper">
       <div class="tile-favicon">

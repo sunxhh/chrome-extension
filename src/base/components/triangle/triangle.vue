@@ -24,7 +24,7 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .triangle {
-  background-image: url('../../assets/img/sketched.png');
+  background-image: url('../../../assets/img/sketched.png');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 90%;

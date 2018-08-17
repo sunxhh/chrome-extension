@@ -1,7 +1,9 @@
-import Triangle from './triangle/triangle.vue'
+import components from './components/index';
+import directives from './directives/index'
 
 export default {
-  install: function(Vue) {
-    Vue.component('Triangle', Triangle);
-  }
+	install: function (Vue) {
+		components(Vue);
+		directives(Vue);
+	}
 }

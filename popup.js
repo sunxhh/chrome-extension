@@ -1,1 +1,1 @@
-window.open("dist/bookmarks.html");
+window.open('dist/bookmarks.html');

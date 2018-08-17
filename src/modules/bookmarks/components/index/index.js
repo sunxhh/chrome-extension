@@ -3,12 +3,16 @@ import BookmarkFolder from '../bookmark-folder/bookmark-folder.vue';
 import {
 	toTop
 } from 'common/js/dom';
+import {
+	mapState
+} from 'vuex';
 
 export default {
 	data() {
 		return {
 			folderList: [],
-			selectedFolderId: undefined
+			selectedFolderId: undefined,
+			localCount: 1
 		};
 	},
 	components: {
@@ -69,6 +73,26 @@ export default {
 			let wrapper = this.$refs['bookmarks_content'];
 			let top = toTop(dom, wrapper) + (offset || 0);
 			wrapper.scrollTop = top;
+		},
+		clicka: function () {
+			this.$store.dispatch('add')
 		}
+	},
+	computed: {
+		...(mapState({
+			// 箭头函数可使代码更简练
+			count: state => state.count,
+
+			// 传字符串参数 'count' 等同于 `state => state.count`
+			countAlias: 'count',
+
+			// 为了能够使用 `this` 获取局部状态，必须使用常规函数
+			countPlusLocalState(state) {
+				return state.count + this.localCount
+			},
+			doneTodos: (state, getters) => {
+				return getters.doneTodos
+			},
+		}))
 	}
 };

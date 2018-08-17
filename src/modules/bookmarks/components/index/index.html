@@ -1,10 +1,15 @@
 <div class="bookmarks">
-  <bookmark-folder v-bind:folderList="folderList" v-on:selectFolder="selectFolder" v-bind:selectedId="selectedFolderId"></bookmark-folder>
-  <div class="bookmarks-content" ref="bookmarks_content">
-    <div v-for="folder of folderList" v-bind:ref="'parent_folder_'+folder.id" :key="folder.id">
-      <div class="bookmark" v-for="bookmark of folder.children" :key="bookmark.id">
-        <one-bookmark v-bind:bookmark="bookmark"></one-bookmark>
-      </div>
-    </div>
-  </div>
+	<div style="position:fixed;z-index:100000">
+		<div>{{count}}</div>
+		<button v-on:click="clicka($event)">点击按钮啊</button>
+	</div>
+
+	<bookmark-folder v-bind:folderList="folderList" v-on:selectFolder="selectFolder" v-bind:selectedId="selectedFolderId"></bookmark-folder>
+	<div class="bookmarks-content" ref="bookmarks_content">
+		<div v-for="folder of folderList" v-bind:ref="'parent_folder_'+folder.id" :key="folder.id">
+			<div class="bookmark" v-for="bookmark of folder.children" :key="bookmark.id">
+				<one-bookmark v-bind:bookmark="bookmark"></one-bookmark>
+			</div>
+		</div>
+	</div>
 </div>

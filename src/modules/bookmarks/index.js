@@ -6,16 +6,18 @@ import 'common/stylus/index.styl';
 import 'element-ui/lib/theme-chalk/index.css';
 
 import router from './router/index.js';
-import installComponents from '../../base/index.js'
+import installComponents from '../../base/index.js';
 
+import store from './store';
 Vue.use(installComponents);
 Vue.use(ElementUI);
 
 new Vue({
-  el: '#app',
-  render: (h) => {
-    return h(App);
-  },
-  router
+	el: '#app',
+	// 把 store 对象提供给 “store” 选项，这可以把 store 的实例注入所有的子组件
+	store,
+	render: (h) => {
+		return h(App);
+	},
+	router
 });
-

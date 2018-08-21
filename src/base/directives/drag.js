@@ -15,6 +15,10 @@ const dict = {
 			this.curData = data;
 		}, false);
 
+		el.addEventListener('dragover', (e) => {
+			e.preventDefault();
+		}, false);
+
 		el.addEventListener('dragend', () => {
 			this.curData = null;
 		}, false);

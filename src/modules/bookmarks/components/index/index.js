@@ -8,6 +8,11 @@ import {
 	mapActions
 } from 'vuex';
 
+import {
+	listenMessage,
+	eventNames
+} from 'common/js/channelEvents';
+
 export default {
 	data() {
 		return {
@@ -21,11 +26,8 @@ export default {
 	},
 	created: function () {
 		this.getBookmarkTree();
-		// 书签创建的时候截取屏幕
-		chrome.bookmarks.onCreated.addListener((id, bookmark) => {
-			setTimeout(() => {
-				this.getBookmarkTree();
-			}, 2000)
+		listenMessage(eventNames.changeBookmark).then(() => {
+			this.getBookmarkTree();
 		});
 	},
 	methods: {

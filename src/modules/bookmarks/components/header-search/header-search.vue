@@ -15,7 +15,7 @@ export default {
   methods: {}
 };
 </script>
-<style lang="stylus" scoped>
+<style lang='stylus' scoped>
 @import '../../../../common/stylus/variable.styl';
 
 .bookmarks-header {

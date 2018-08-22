@@ -18,7 +18,7 @@ export default {
       }
     };
   },
-  props: ["folderList", "selectedId"],
+  props: ['folderList', 'selectedId'],
   created: function() {},
   computed: {
     cSelectedId: function() {
@@ -27,21 +27,21 @@ export default {
   },
   methods: {
     selected: function(e, item) {
-      this.$emit("selectFolder", item);
+      this.$emit('selectFolder', item);
     },
     drop(data, $event) {
       console.log(data);
       let target = $event.currentTarget;
-      target.style["border"] = "";
+      target.style['border'] = '';
     },
     dragenter($event) {
       let target = $event.currentTarget;
-      target.style["border"] = "3px solid #333";
+      target.style['border'] = '3px solid #333';
       event.preventDefault();
     },
     dragleave($event) {
       let target = $event.currentTarget;
-      target.style["border"] = "";
+      target.style['border'] = '';
     }
   }
 };

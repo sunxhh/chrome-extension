@@ -15,6 +15,7 @@ module.exports = {
 	"parserOptions": {
 		"ecmaVersion": 6
 	},
+	"plugins": ["html"],
 	rules: {
 		'accessor-pairs': OFF,
 		'brace-style': [ERROR, '1tbs'],

@@ -50,29 +50,26 @@ function isBookmark(url) {
 function getBookmarksScreenshot(request, sender, sendResponse) {
 	isBookmark(request.url).then((istrue) => {
 		if (istrue) {
-			// 短暂延迟再截图
-			setTimeout(() => {
-				capture().then((screenshotData) => {
-					dataBaseOpen.then((db) => {
-						db.getDataByKey('bookmark', request.url).then((data) => {
-							let {
-								result,
-								store
-							} = data;
-							let dbData = {
-								url: request.url,
-								origin: request.origin,
-								data: screenshotData
-							};
-							if (result) {
-								store.put(dbData);
-							} else {
-								store.add(dbData);
-							}
-							postMessage(eventNames.changeBookmark, true);
-						})
-					});
-				}, 1000);
+			capture().then((screenshotData) => {
+				dataBaseOpen.then((db) => {
+					db.getDataByKey('bookmark', request.url).then((data) => {
+						let {
+							result,
+							store
+						} = data;
+						let dbData = {
+							url: request.url,
+							origin: request.origin,
+							data: screenshotData
+						};
+						if (result) {
+							store.put(dbData);
+						} else {
+							store.add(dbData);
+						}
+						postMessage(eventNames.changeBookmark, true);
+					})
+				});
 			})
 		}
 	})

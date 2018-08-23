@@ -27,7 +27,9 @@
 		keyPath: 'url',
 		upgradeneeded: function (db, name, keyPath) {
 			if (!db.objectStoreNames.contains(name)) {
-				db.createObjectStore(name, { keyPath: keyPath });
+				db.createObjectStore(name, {
+					keyPath: keyPath
+				});
 			}
 		}
 	}).init();
@@ -54,7 +56,9 @@
 			getUrlImgData(url) {
 				return dataBaseOpen.then(db => {
 					return db.getDataByKey('bookmark', url).then(data => {
-						let { result, store } = data;
+						let {
+							result
+						} = data;
 						if (result) {
 							this.thumbUrl = result.data;
 						}

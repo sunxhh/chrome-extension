@@ -42,13 +42,10 @@
 		},
 		props: ['bookmark'],
 		created: function () {
-			this.getHtml();
 			this.getUrlImgData(this.bookmark.url);
 		},
 
 		methods: {
-			getFavicon: function () {},
-			getHtml: function () {},
 			get_icon: function (url) {
 				return 'chrome://favicon/' + url;
 			},
@@ -71,6 +68,7 @@
 </script>
 <style lang='stylus' scoped>
 	@import '../../../../common/stylus/variable.styl';
+
 	.bookmark-tile {
 		display: inline-block;
 		width: 250px;
@@ -79,9 +77,11 @@
 		background: rgb(250, 250, 250);
 		border-radius: 2px;
 		box-sizing: border-box;
+
 		&:hover {
 			box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.08);
 		}
+
 		.tile-title-wrapper {
 			display: flex;
 			align-items: center;
@@ -90,14 +90,17 @@
 			position: relative;
 			padding: 0 8px;
 			border-bottom: 1px solid #dbdbdb;
+
 			.tile-favicon {
 				display: inline-block;
 				flex-grow: 0;
 				flex-shrink: 0;
 			}
+
 			.tile-title-outter {
 				margin-left: 5px;
 				max-width: 205px;
+
 				.tile-title {
 					white-space: nowrap;
 					overflow: hidden;
@@ -106,9 +109,11 @@
 				}
 			}
 		}
+
 		.tile-content {
 			width: 100%;
 			font-size: 0px;
+
 			img {
 				width: 100%;
 				height: 140px;

@@ -5,7 +5,8 @@ import {
 } from 'common/js/dom';
 import {
 	mapState,
-	mapActions
+	mapActions,
+	mapMutations
 } from 'vuex';
 
 import {
@@ -16,7 +17,6 @@ import {
 export default {
 	data() {
 		return {
-			selectedFolderId: undefined,
 			localCount: 1
 		};
 	},
@@ -30,28 +30,40 @@ export default {
 			this.getBookmarkTree();
 		});
 	},
+	computed: {
+		...(mapState('bookmark', {
+			folderList: (state) => {
+				return state.bookmarkTree
+			},
+			selectedFolderId: (state) => {
+				return state.selectedFolderId
+			}
+		}))
+	},
+	watch: {
+		selectedFolderId: {
+			immediate: true,
+			handler(val) {
+				if (val === -1) {
+					return;
+				}
+				this.scrollToDom(val);
+			}
+		}
+	},
 	methods: {
-		// 选中folder
-		selectFolder: function (folder) {
-			this.selectedFolderId = folder.id ? folder.id : folder;
-			let folderBookmarkDom = this.$refs['parent_folder_' + folder.id][0];
-
-			this.scrollToDom(folderBookmarkDom);
-		},
-		scrollToDom: function (dom, offset) {
+		// 滚动
+		scrollToDom: function (folderId, offset) {
+			let dom = this.$refs['parent_folder_' + folderId][0];
 			let wrapper = this.$refs['bookmarks_content'];
 			let top = toTop(dom, wrapper) + (offset || 0);
 			wrapper.scrollTop = top;
 		},
 		...mapActions('bookmark', [
 			'getBookmarkTree'
-		])
-	},
-	computed: {
-		...(mapState('bookmark', {
-			folderList: (state) => {
-				return state.bookmarkTree
-			},
-		}))
+		]),
+		...mapMutations([
+			'changeSelectedFolderId'
+		]),
 	}
 };

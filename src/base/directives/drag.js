@@ -11,27 +11,35 @@ const dict = {
 	drag: function (el, data) {
 		el.setAttribute('draggable', true);
 
-		el.addEventListener('dragstart', (e) => {
+		el.ondragstart = (e) => {
 			this.curData = data;
-		}, false);
+		};
 
+		el.ondragend = () => {
+			this.curData = null;
+		};
+	},
+	drop: function (el, callback) {
+		// drop 触发的条件需要把dragover 设为event.preventDefault();
 		el.addEventListener('dragover', (e) => {
 			e.preventDefault();
 		}, false);
 
-		el.addEventListener('dragend', () => {
-			this.curData = null;
-		}, false);
-	},
-	// drop 触发的条件需要把dragover 设为event.preventDefault();
-	drop: function (el, callback) {
-		el.addEventListener('drop', (e) => {
-			if (this.curData) {
-				callback(this.curData, e);
+		const dropFn = (e) => {
+			let data = this.curData;
+			if (data) {
+				callback(data, e);
 			}
-		}, false);
+		};
+
+		if (el.dropFn) {
+			el.removeEventListener('drop', el.dropFn);
+		}
+
+		el.addEventListener('drop', dropFn, false);
+		el.dropFn = dropFn;
 	}
-}
+};
 
 
 export default function (Vue) {
@@ -39,7 +47,25 @@ export default function (Vue) {
 		// 当被绑定的元素插入到 DOM 中时……
 		inserted: function (el, binding) {
 			let type = binding.arg;
-			dict[type] && dict[type](el, binding.value);
+			let value = binding.value;
+			let data;
+			if (!type) {
+				type = value.type;
+				data = value.data;
+				value = value.callback;
+			}
+			dict[type] && dict[type](el, value, data);
+		},
+		componentUpdated: function (el, binding) {
+			let type = binding.arg;
+			let value = binding.value;
+			let data;
+			if (!type) {
+				type = value.type;
+				data = value.data;
+				value = value.callback;
+			}
+			dict[type] && dict[type](el, value, data);
 		}
-	})
+	});
 }

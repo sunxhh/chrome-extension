@@ -7,9 +7,11 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 import router from './router/index.js';
 import installComponents from '../../base/index.js';
-
+import installModuleComponents from './common/index.js';
 import store from './store';
+
 Vue.use(installComponents);
+Vue.use(installModuleComponents);
 Vue.use(ElementUI);
 
 new Vue({

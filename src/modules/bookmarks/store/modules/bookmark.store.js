@@ -37,7 +37,10 @@ const bookmarkMap = {
 const store = {
 	namespaced: true,
 	state: {
-		bookmarkTree: []
+		// bookmark的树
+		bookmarkTree: [],
+		// 选中的文件夹的id
+		selectedFolderId: -1
 	},
 	getters: {
 
@@ -45,6 +48,10 @@ const store = {
 	mutations: {
 		changeBookmarkTree(state, payload) {
 			state.bookmarkTree = payload;
+		},
+		// 修改选中的文件夹的id
+		changeSelectedFolderId(state, payload) {
+			state.selectedFolderId = payload;
 		}
 	},
 	actions: {

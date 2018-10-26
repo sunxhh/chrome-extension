@@ -14,12 +14,14 @@ function getEntry(globPath) {
 	let entries = {};
 	glob.sync(globPath).forEach(function (entry) {
 		entry.replace(/\/([^\/]+)\/index.js$/, function (a, pathname) {
+			let folderPath = path.dirname(entry);
 			entries[pathname] = entry;
 			// 配置生成的html文件，定义路径等
 			var conf = {
 				filename: pathname + '.html',
 				// 模板路径
-				template: resolve('src/index.html'),
+				template: path.join(`${folderPath}/index.html`),
+				chunks: [pathname],
 				// js插入位置
 				inject: true
 			};
@@ -31,10 +33,10 @@ function getEntry(globPath) {
 	return entries;
 }
 
+getEntry(resolve('src/modules/*/index.js'));
 
 module.exports = {
 	entry: {
-		vendor: ['vue', 'vue-router'],
 		...getEntry(resolve('src/modules/*/index.js'))
 	},
 	output: {
